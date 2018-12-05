@@ -10,7 +10,8 @@ import Divider from '@material-ui/core/Divider'
 import SvgHome from '@material-ui/icons/Home'
 import SvgFeedback from '@material-ui/icons/Feedback'
 import SvgSettings from '@material-ui/icons/Settings'
-import SvgAccountCircle from '@material-ui/icons/AccountCircle'
+// import SvgAccountCircle from '@material-ui/icons/AccountCircle'
+import SvgGames from '@material-ui/icons/Games'
 import SvgPeople from '@material-ui/icons/People'
 import { SvgIconProps } from '@material-ui/core/SvgIcon/SvgIcon'
 import Hidden from '@material-ui/core/Hidden'
@@ -39,9 +40,9 @@ const menuItems: MenuItem[] = [
     sidebarName: 'sidebar.home',    
   },
   {
-    path: '/profile',
-    icon: SvgAccountCircle,
-    sidebarName: 'sidebar.profile',
+    path: '/games',
+    icon: SvgGames,
+    sidebarName: 'sidebar.games',
   },
   {
     path: '/people',

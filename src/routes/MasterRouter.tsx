@@ -47,7 +47,7 @@ export class MasterRouter extends Component<IRouterProps, any> {
         <Switch>
           <Route path='/signup' component={AsyncSignup} />
           <Route path='/emailVerification' component={AsyncEmailVerification} />
-          <Route path='/settings' component={AsyncSetting} />
+          <Route path='/settings' component={AsyncSetting} />        
           <Route path='/resetPassword' component={AsyncResetPassword} />
           <PublicRoute path='/login' component={<AsyncLogin />} />
           <Route render={() => <AsyncHome uid={data.uid} />} />

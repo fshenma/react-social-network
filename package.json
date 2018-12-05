@@ -1,7 +1,7 @@
 {
-  "name": "react-social",
+  "name": "game-chaser",
   "version": "1.0.0",
-  "description": "Simple react socail app",
+  "description": "Game Chaser app",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
-  "author": "Amir Movahedi",
+  "author": "Ying Shen",
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^1.0.0-rc.1",
@@ -126,7 +126,7 @@
     "mobile"
   ],
   "bugs": {
-    "url": "https://github.com/Qolzam/react-social-network/issues"
+    "url": "https://github.com/fshenma/game-chaser/issues"
   },
   "snyk": true
 }

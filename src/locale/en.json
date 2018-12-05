@@ -1,7 +1,7 @@
 {
     "sidebar" : {
         "home": "Home",
-        "profile": "Profile",
+        "games": "Games",
         "people": "People",
         "settings": "Settings",
         "sendFeedback": "Send Feedback"
@@ -74,6 +74,19 @@
         "findPeopleTab": "FIND PEOPLE",
         "followingTab": "FOLLOWING",
         "followersTab": "FOLLOWERS",
+        "suggestionsForYouLabel": "Suggestions for you",
+        "nothingToShowLabel": "Nothing to show! :(",
+        "followingLabel": "Following",
+        "noFollowingLabel": "No following user!",
+        "followersLabel": "Followers",
+        "noFollowersLabel": "No followers!"
+    },
+    "game": {
+        "scheduleTab": "By Schedule",
+        "locationTab": "By Location",
+        "scoreTab": "Score",
+        "onCourtTab": "Players On Court",
+        "standbyTab": "Players Standby",
         "suggestionsForYouLabel": "Suggestions for you",
         "nothingToShowLabel": "Nothing to show! :(",
         "followingLabel": "Following",
