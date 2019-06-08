@@ -11,7 +11,8 @@ export class Profile extends BaseDomain {
     public birthday?: number,
     public webUrl?: string,
     public companyName?: string,
-    public twitterId?: string
+    public twitterId?: string,
+    public playerNum?: number
   ) {
     super()
 

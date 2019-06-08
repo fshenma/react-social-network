@@ -53,7 +53,7 @@ export class UserAvatarComponent extends Component<IUserAvatarComponentProps,IUs
     super(props)
 
     // Defaul state
-    this.state = {
+    this.state = { 
     }
 
     // Binding functions to `this`
@@ -65,13 +65,14 @@ export class UserAvatarComponent extends Component<IUserAvatarComponentProps,IUs
    * @return {react element} return the DOM which rendered by component
    */
   render () {
-    let { fileName, fullName, style, size, onClick } = this.props
+    let { fileName, fullName, playerNum, style, size, onClick } = this.props
 
     return (
       <div style={{display: 'inherit'}}>
        {(fileName && fileName !== '' && fileName !== 'noImage' )
        ? ( <Avatar src={fileName ? fileName : ' '} style={{...style, backgroundColor: '#ffffff', width: size || 36, height: size || 36}} onClick={onClick} />)
-        : (<Avatar style={{...style, backgroundColor: '#00bcd4', width: size || 36, height: size || 36}} onClick={onClick}>{fullName ? fullName.slice(0, 1) : ''}</Avatar>) }
+        : (<Avatar style={{...style, backgroundColor: '#00bcd4', width: size || 36, height: size || 36}} onClick={onClick}>{playerNum}</Avatar>) }
+          {/* {fullName ? fullName.slice(0, 1) : ''} */}
       </div>
     )
   }

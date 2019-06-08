@@ -31,6 +31,11 @@ export interface IUserBoxComponentProps {
    */
   isFollowed?: boolean
 
+  /**
+   * Whether current user followed this user
+   */
+  isGame?: boolean
+
     /**
      * The number of circles
      */
@@ -50,6 +55,11 @@ export interface IUserBoxComponentProps {
     * User full name
     */
   fullName?: string
+
+   /**
+    * User Player number
+    */
+   playerNum?: number
 
    /**
     * The `Following` circle identifier of current user

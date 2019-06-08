@@ -15,6 +15,8 @@ import { userReducer } from './users'
 import { voteReducer } from './votes'
 import { serverReducer } from './server'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
+import { playerReducer } from './players'
+import { gameReducer } from './game'
 
 // - Reducers
 export const rootReducer = combineReducers({
@@ -28,6 +30,8 @@ export const rootReducer = combineReducers({
     authorize: authorizeReducer,
     router: routerReducer,
     user: userReducer,
+    player: playerReducer,
+    game: gameReducer,
     notify: notificationReducer,
     global: globalReducer
   } as any)

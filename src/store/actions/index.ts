@@ -6,6 +6,8 @@ import * as imageGalleryActions from './imageGalleryActions'
 import * as notifyActions from './notifyActions'
 import * as postActions from './postActions'
 import * as userActions from './userActions'
+import * as gameActions from './gameActions'
+import * as playerActions from './playerActions'
 import * as voteActions from './voteActions'
 import * as localeActions from './localeActions'
 import * as serverActions from './serverActions'
@@ -19,6 +21,8 @@ export {
   notifyActions,
   postActions,
   userActions,
+  gameActions,
+  playerActions,
   voteActions,
   localeActions,
   serverActions

@@ -306,6 +306,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
     const { disabledDoneCircles } = this.state
     const { 
       isFollowed,
+      isGame,
       firstBelongCircle,
       belongCirclesCount,
       followRequest, 
@@ -333,6 +334,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
             <UserAvatar
               fullName={this.props.fullName!}
               fileName={this.props.avatar!}
+              playerNum={this.props.playerNum!}
               size={90}
             />
           </div>
@@ -342,6 +344,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
             </div>
           </div>
           <div style={this.styles.followButton as any}>
+           {/* {isGame ? <div><Button color='primary'>red</Button><Button color='primary'>white</Button></div> : */}
             <Button
               color='primary'
               onClick={this.onFollowUser}
@@ -353,6 +356,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
               {!isFollowed ? translate!('userBox.followButton')
                 : (belongCirclesCount! > 1 ? translate!('userBox.numberOfCircleButton', {circlesCount: belongCirclesCount}) : ((firstBelongCircle) ? firstBelongCircle.get('name', 'Followed') : translate!('userBox.followButton')))}
             </Button>
+          {/* } */}
           </div>
         </div>
         <Dialog
@@ -473,7 +477,8 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IUserBoxComponentPro
     belongCirclesCount: userBelongCircles.count() || 0,
     firstBelongCircle: userBelongCircles ?  circles.get(userBelongCircles.get(0), Map({})) : Map({}),
     avatar: userBox.avatar || '' ,
-    fullName: userBox.fullName || ''
+    fullName: userBox.fullName || '',
+    playerNum: userBox.playerNumber || ''
   }
 }
 

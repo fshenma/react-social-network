@@ -34,4 +34,20 @@ export interface IGamesComponentProps {
    * Translate to locale string
    */
   translate?: (state: any) => any
+
+  gameEvents?: any 
+
+  /**
+   *  load Games
+   *
+   * @memberof IGamesComponentProps
+   */
+  loadGames?: () => any
+
+  /**
+   *  select Game event
+   *
+   * @memberof IGamesComponentProps
+   */
+  selectGameEvent?: (evtId: string, evtTitle: string ) => any
 }

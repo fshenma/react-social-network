@@ -15,13 +15,7 @@
         "curly": true,
         "eofline": false,
         "forin": true,
-        "ter-indent": [
-            true,
-            2,
-            {
-                "SwitchCase": 1
-            }
-        ],
+        
         "interface-name": [false, "always-prefix"],
         "jsdoc-format": true,
         "no-extra-boolean-cast": true,
@@ -102,5 +96,8 @@
             "check-type-operator",
             "check-preblock"
           ]
-    }
+    },
+    "rulesDirectory": [
+        "node_modules/tslint-eslint-rules/dist/rules"
+    ]
 }

@@ -80,6 +80,7 @@ export const dbFollowUser = (followingCircleId: string, userFollowing: UserTie) 
           userFollowing.userId!,
           moment().unix(),
           userFollowing.fullName,
+          userFollowing.playerNumber,
           userFollowing.avatar,
           false,   
       ))
@@ -137,6 +138,7 @@ export let dbUpdateUserInCircles = (circleIdList: List<string>, userFollowing: U
           userFollowing.userId!,
           moment().unix(),
           userFollowing.fullName,
+          userFollowing.playerNumber,
           userFollowing.avatar,
           false
       ))

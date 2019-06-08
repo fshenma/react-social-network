@@ -13,5 +13,7 @@ export const SocialProviderTypes = {
   NotificationService: Symbol('NotificationService'),
   PostService: Symbol('PostService'),
   UserService: Symbol('UserService'),
+  PlayerService: Symbol('PlayerService'),
+  GameService: Symbol('GameService'),
   VoteService: Symbol('VoteService')
-}
+} 

@@ -1,0 +1,2 @@
+import ActivePlayersBoxListComponent from './ActivePlayersBoxListComponent'
+export default ActivePlayersBoxListComponent

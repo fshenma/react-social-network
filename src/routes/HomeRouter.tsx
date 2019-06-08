@@ -24,7 +24,7 @@ const AsyncPostPage = Loadable({
   loading: MasterLoadingComponent,
 })
 const AsyncPeople = Loadable({
-  loader: () => import('containers/people'),
+  loader: () => import('containers/players'),
   loading: MasterLoadingComponent,
 })
 const AsyncGames = Loadable({
@@ -48,7 +48,7 @@ export class HomeRouter extends Component<IRouterProps, any> {
           <Switch>
             <PrivateRoute path='/people/:tab?' component={<AsyncPeople />} />
             <PrivateRoute path='/games' component={<AsyncGames />} />
-            <PrivateRoute path='/game' component={<AsyncGame />} />
+            <PrivateRoute path='/game/:tab?' component={<AsyncGame />} />
             <PrivateRoute path='/tag/:tag' component={(
             <div><St displayWriting={false} homeTitle={`#${match.params.tag}`} posts={data.mergedPosts} /></div>
             )} />

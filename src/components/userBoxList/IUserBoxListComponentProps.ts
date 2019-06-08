@@ -19,4 +19,12 @@ export interface IUserBoxListComponentProps {
      * @memberof IUserBoxListComponentProps
      */
   uid?: string
+
+    /**
+     * isGame
+     *
+     * @type {boolean}
+     * @memberof IUserBoxListComponentProps
+     */
+    isGame?: boolean
 }

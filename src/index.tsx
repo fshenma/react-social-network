@@ -21,6 +21,9 @@ import Master from 'containers/master'
 // import { App } from 'components/AWS'
 // App css
 import './styles/app.css'
+import 'font-awesome/css/font-awesome.min.css'
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbreact/dist/css/mdb.css'
 
 /**
  * Execute startup functions

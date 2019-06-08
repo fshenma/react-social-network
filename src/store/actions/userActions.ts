@@ -5,6 +5,7 @@ import { Map } from 'immutable'
 // - Import domain
 import { Profile } from 'src/core/domain/users'
 import { SocialError } from 'src/core/domain/common'
+import { Player } from 'src/core/domain/player'
 
 // - Import action types
 import { UserActionType } from 'constants/userActionType'
@@ -22,7 +23,7 @@ const userService: IUserService = provider.get<IUserService>(SocialProviderTypes
 
 /* _____________ CRUD DB _____________ */
 
-/**
+/** 
  * Get user info from database
  */
 export const dbGetUserInfo = () => {
@@ -103,7 +104,7 @@ export const dbUpdateUserInfo = (newProfile: Profile) => {
     let uid: string = state.getIn(['authorize', 'uid'])
 
     let profile: Profile = state.getIn(['user', 'info', uid])
-    let updatedProfile: Profile = {
+    let updatedProfile: Profile  = {
       avatar: newProfile.avatar || profile.avatar || '',
       banner: newProfile.banner || profile.banner || 'https://firebasestorage.googleapis.com/v0/b/open-social-33d92.appspot.com/o/images%2F751145a1-9488-46fd-a97e-04018665a6d3.JPG?alt=media&token=1a1d5e21-5101-450e-9054-ea4a20e06c57',
       email: newProfile.email || profile.email || '',
@@ -113,7 +114,8 @@ export const dbUpdateUserInfo = (newProfile: Profile) => {
       companyName: newProfile.companyName || '',
       webUrl: newProfile.webUrl || '',
       twitterId: newProfile.twitterId || '',
-      creationDate: newProfile.creationDate
+      creationDate: newProfile.creationDate,
+       
     }
     return userService.updateUserProfile(uid,updatedProfile).then(() => {
 
@@ -187,6 +189,16 @@ export const addPeopleInfo = (infoList: Map<string, Profile>) => {
 export const updateUserInfo = (uid: string, info: Profile) => {
   return {
     type: UserActionType.UPDATE_USER_INFO,
+    payload: { uid, info }
+  }
+}
+
+/**
+ * Update user information
+ */
+export const updatePlayerInfo = (uid: string, info: Player) => {
+  return {
+    type: UserActionType.UPDATE_PLAYER_INFO,
     payload: { uid, info }
   }
 }

@@ -1,0 +1,2 @@
+import AvailPlayersBoxListComponent from './AvailPlayersBoxListComponent'
+export default AvailPlayersBoxListComponent

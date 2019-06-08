@@ -11,20 +11,25 @@ import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography'
 import { getTranslate, getActiveLanguage } from 'react-localize-redux'
 import {Map} from 'immutable'
+// import moment from 'moment/moment'
 
 // - Import app components
-import FindPeople from 'src/components/findPeople'
-import Following from 'src/components/following'
 import Followers from 'src/components/followers'
-import YourCircles from 'src/components/yourCircles'
 
 // - Import API
 
 // - Import actions
-import * as circleActions from 'src/store/actions/circleActions'
 import * as globalActions from 'src/store/actions/globalActions'
+import * as gameActions from 'src/store/actions/gameActions'
 import { IGamesComponentProps } from './IGamesComponentProps'
 import { IGamesComponentState } from './IGamesComponentState'
+
+// import InfiniteCalendar from 'react-infinite-calendar'
+// import 'react-infinite-calendar/styles.css' // only needs to be imported once
+// import { ReactAgenda , ReactAgendaCtrl , guid ,  Modal } from 'react-agenda'
+const {ReactAgenda , ReactAgendaCtrl , guid ,  Modal} = require('react-agenda')
+import GameEvents from 'src/components/gameEvents'
+// const {EventLogList} = require('react-event-list')
 
 const TabContainer = (props: any) => {
   return (
@@ -33,6 +38,32 @@ const TabContainer = (props: any) => {
     </Typography>
   )
 }
+
+var colors = {
+  'color-1': 'rgba(102, 195, 131 , 1)' ,
+  'color-2': 'rgba(242, 177, 52, 1)' ,
+  'color-3': 'rgba(235, 85, 59, 1)'
+}
+ 
+var now = new Date()
+ 
+var items = [
+  {
+   _id            : guid(),
+    name          : 'Meeting , dev staff!',
+    startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0),
+    endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
+    classes       : 'color-1'
+  },
+  {
+   _id            : guid(),
+    name          : 'Working lunch , Holly',
+    startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 11, 0),
+    endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 13, 0),
+    classes       : 'color-2 color-3'
+  },
+ 
+]
 
 /**
  * Create component class
@@ -43,23 +74,37 @@ export class GamesComponent extends Component<IGamesComponentProps,IGamesCompone
 
   }
 
+  // static defaultProps = {
+  //   gameEvents: ['Saturday, 3/2/2019@12:40pm$ JayPeak, VT$ Hockey Tournament Game$']
+  // }
   /**
    * Component constructor
    * @param  {object} props is an object properties of component
    */
   constructor (props: IGamesComponentProps) {
     super(props)
-    const {tab} = this.props.match.params
+    const {tab} = this.props.match.params    
+
     // Defaul state
     this.state = {
-      tabIndex: this.getTabIndexByNav(tab)
-    }
+      tabIndex: this.getTabIndexByNav(tab),
+      items: items,
+      selected: [],
+      cellHeight: 30,
+      showModal: false,
+      // locale: 'fr',
+      // rowsPerHour: 2,
+      // numberOfDays: 4,
+      startDate: new Date(),
+      msgTitle: '' 
+     // eventLogs: eveLogs
+    }  
 
-    // Binding functions to `this`
+    // this.setState({eventLogs : eveLogs})
+    
+  }  
 
-  }
-
-  /**
+  /** 
    * Hadle on tab change
    */
   handleChangeTab = (event: any, value: any) => {
@@ -84,13 +129,41 @@ export class GamesComponent extends Component<IGamesComponentProps,IGamesCompone
     }
   }
 
+  /**
+   * Hadle calendar select
+   */
+  onSelectDay = (e: any, value: any) => {
+    const {goTo, setHeaderTitle, selectGameEvent} = this.props
+    const evtId = e.target.id 
+    const evtTitle = e.target.title
+    
+    selectGameEvent!(evtId, evtTitle)
+    goTo!('/Game')    
+    setHeaderTitle!('Game on ' + value )
+  }
+
+  handleCellSelection = (item: any) => {
+    console.log('handleCellSelection',item)
+  }
+  handleItemEdit = (item: any) => {
+    console.log('handleItemEdit', item)
+  }
+  handleRangeSelection = (item: any) => {
+    console.log('handleRangeSelection', item)
+  }
+
   componentWillMount () {
-    const { setHeaderTitle} = this.props
+    // this.setState({items: })
+    // Binding functions to `this`
+    // this.setState({ msgTitle: msgTitleVal })
+
+    const { setHeaderTitle, loadGames} = this.props
     const {tab} = this.props.match.params
     switch (tab) {
       case undefined:
       case '':
         setHeaderTitle!('Games')
+        loadGames!()
         break
       case 'circles':
         setHeaderTitle!('Circles')
@@ -126,9 +199,14 @@ export class GamesComponent extends Component<IGamesComponentProps,IGamesCompone
         padding: 10
       }
     }
-
-    const {circlesLoaded, goTo, setHeaderTitle, translate} = this.props
+    
+    const {circlesLoaded, goTo, setHeaderTitle, gameEvents, translate} = this.props
     const {tabIndex} = this.state
+    
+    const today = new Date()
+    // const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7)
+    const msgTitleVal = 'Games Scheduled' // moment(today).format('dddd') + ', ' + today.toLocaleDateString()
+   
     return (
       <div style={styles.people}>
       <AppBar position='static' color='default'>
@@ -143,7 +221,18 @@ export class GamesComponent extends Component<IGamesComponentProps,IGamesCompone
         <Tab label={translate!('game.rotationTab')} /> */}
       </Tabs>
       </AppBar>
-      {tabIndex === 0 && <TabContainer>Load Schedules ...</TabContainer>}
+      {tabIndex === 0 && <TabContainer>                    
+          <div style={{ width: '80%', marginLeft: '10px', marginTop: '10px' }}>
+            <GameEvents
+              title={msgTitleVal}
+              logs={gameEvents}
+              onSelect={this.onSelectDay}  
+              value={msgTitleVal}     
+              clearBtnText={'Clear notifications'}
+              addBtnText={'Add'}
+            />
+          </div>
+      </TabContainer>}
       {tabIndex === 1 && <TabContainer>
          Load Game Locations ...
       </TabContainer>}
@@ -178,8 +267,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: IGamesComponentProps) => {
 
   return {
     goTo: (url: string) => dispatch(push(url)),
-    setHeaderTitle : (title: string) => dispatch(globalActions.setHeaderTitle(title))
-
+    setHeaderTitle : (title: string) => dispatch(globalActions.setHeaderTitle(title)),
+    loadGames: () => dispatch(gameActions.dbGetGames()),
+    selectGameEvent: (evtId: string, evtTitle: string) => dispatch(gameActions.selectGameEvent(evtId, evtTitle))
   }
 }
 
@@ -191,11 +281,22 @@ const mapDispatchToProps = (dispatch: any, ownProps: IGamesComponentProps) => {
  */
 const mapStateToProps = (state: Map<string, any>, ownProps: IGamesComponentProps) => {
 
+  let availGameEvents = state.getIn(['game', 'get_game_event'])
+  let availGames = availGameEvents ? availGameEvents.games : ['deewsr12$Saturday, 3/2/2019T12:40pm$ JayPeak, VT$ Hockey Tournament Game$']
+  
+  // const existGames = state.getIn(['game', 'get_game_event'])  
+  // const newGameEvent = state.getIn(['game', 'new_game_event'])   
+  // const availGameEvents = existGames && existGames.games.length > 0 ? existGames.games : ['deewsr12$Saturday, 3/2/2019T12:40pm$ JayPeak, VT$ Hockey Tournament Game$']
+  // if (newGameEvent) {
+  //   // newGameEvents.push(newEvent)
+  //   availGameEvents.unshift(newGameEvent)
+  // }
+
   return {
     translate: getTranslate(state.get('locale')),
     uid: state.getIn(['authorize', 'uid'], 0),
-    circlesLoaded: state.getIn(['circle', 'loaded'])
-
+    circlesLoaded: state.getIn(['circle', 'loaded']),
+    gameEvents: availGames  
   }
 }
 

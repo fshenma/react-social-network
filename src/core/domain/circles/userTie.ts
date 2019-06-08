@@ -28,6 +28,14 @@ export class UserTie extends BaseDomain {
   public fullName?: string,
 
     /**
+     * User Player Number
+     *
+     * @type {string}
+     * @memberof UserTie
+     */
+    public playerNumber?: number,
+
+    /**
      * Avatar URL address
      *
      * @type {string}

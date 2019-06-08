@@ -18,12 +18,12 @@ import SideBar from './SideBar'
 
 // - Import actions
 import {
-  authorizeActions,
-  imageGalleryActions,
+  // authorizeActions,
+  // imageGalleryActions,
   postActions,
-  commentActions,
-  voteActions,
-  userActions,
+  // commentActions,
+  // voteActions,
+  playerActions,
   globalActions,
   circleActions,
   notifyActions
@@ -44,7 +44,7 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
       drawerOpen: false
     }
 
-    // Binding function to `this`
+    // Binding function to `this`z
 
   }
 
@@ -115,9 +115,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: IHomeComponentProps) => {
     loadDataStream:
       (page: number, limit: number) => dispatch(postActions.dbGetPosts(page, limit)),
     loadData: () => {
-      dispatch(postActions.dbGetPosts())
-      dispatch(imageGalleryActions.dbGetImageGallery())
-      dispatch(userActions.dbGetUserInfo())
+      // dispatch(postActions.dbGetPosts())
+      // dispatch(imageGalleryActions.dbGetImageGallery())
+      dispatch(playerActions.dbGetUserInfo())
       dispatch(notifyActions.dbGetNotifications())
       dispatch(circleActions.dbGetCircles())
       dispatch(circleActions.dbGetUserTies())
@@ -125,9 +125,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: IHomeComponentProps) => {
 
     },
     clearData: () => {
-      dispatch(imageGalleryActions.clearAllData())
+      // dispatch(imageGalleryActions.clearAllData())
       dispatch(postActions.clearAllData())
-      dispatch(userActions.clearAllData())
+      dispatch(playerActions.clearAllData())
       dispatch(notifyActions.clearAllNotifications())
       dispatch(circleActions.clearAllCircles())
       dispatch(globalActions.clearTemp())
@@ -157,7 +157,7 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IHomeComponentProps)
   const uid = state.getIn(['authorize', 'uid'], {})
   const global = state.get('global', {})
   let mergedPosts = Map({})
-  const circles = state.getIn(['circle', 'circleList'], {})
+  // const circles = state.getIn(['circle', 'circleList'], {})
   const followingUsers: Map<string, any> = state.getIn(['circle', 'userTies'], {})
   const posts = state.getIn(['post', 'userPosts', uid ], {})
   const hasMorePosts = state.getIn(['post', 'stream', 'hasMoreData' ], true)
@@ -174,7 +174,7 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IHomeComponentProps)
     mergedPosts,
     global,
     hasMorePosts,
-    loaded: state.getIn(['user', 'loaded']) && state.getIn(['imageGallery', 'loaded']) && state.getIn(['notify', 'loaded']) && state.getIn(['circle', 'loaded'])
+    loaded: state.getIn(['user', 'loaded']) && state.getIn(['notify', 'loaded']) 
   }
 }
 

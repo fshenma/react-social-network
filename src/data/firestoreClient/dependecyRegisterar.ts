@@ -8,8 +8,12 @@ import { CommentService } from './services/comments/CommentService'
 import { ICircleService } from 'core/services/circles/ICircleService'
 import { Container } from 'inversify'
 import { IUserService } from 'core/services/users'
+import { IPlayerService } from 'core/services/players'
+import { IGameService } from 'core/services/game'
 import { SocialProviderTypes } from 'core/socialProviderTypes'
 import { UserService } from './services/users/UserService'
+import { PlayerService } from './services/players/PlayerService'
+import { GameService } from './services/game/GameService'
 import { IAuthorizeService } from 'core/services/authorize'
 import { AuthorizeService } from './services/authorize/AuthorizeService'
 import { CircleService } from './services/circles/CircleService'
@@ -39,7 +43,10 @@ export const useFirestore = (container: Container) => {
   container.bind<IImageGalleryService>(SocialProviderTypes.ImageGalleryService).to(ImageGalleryService)
   container.bind<INotificationService>(SocialProviderTypes.NotificationService).to(NotificationService)
   container.bind<IPostService>(SocialProviderTypes.PostService).to(PostService)
+  container.bind<IGameService>(SocialProviderTypes.GameService).to(GameService)
   container.bind<IUserService>(SocialProviderTypes.UserService).to(UserService)
+  container.bind<IPlayerService>(SocialProviderTypes.PlayerService).to(PlayerService)
+  // Container.bind<IGameService>(SocialProviderTypes.GameService).to(GameService)
   container.bind<IVoteService>(SocialProviderTypes.VoteService).to(VoteService)
   container.bind<IGraphService>(FirestoreClientTypes.GraphService).to(GraphService)
   container.bind<IUserTieService>(SocialProviderTypes.UserTieService).to(UserTieService)

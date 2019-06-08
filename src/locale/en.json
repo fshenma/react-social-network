@@ -2,7 +2,7 @@
     "sidebar" : {
         "home": "Home",
         "games": "Games",
-        "people": "People",
+        "people": "Players",
         "settings": "Settings",
         "sendFeedback": "Send Feedback"
 
@@ -81,12 +81,18 @@
         "followersLabel": "Followers",
         "noFollowersLabel": "No followers!"
     },
+    "players": {
+        "activePlayersTab": "Players",
+        "newPlayerTab": "+ Player",
+        "messageTab": "Message Board"         
+    },
     "game": {
         "scheduleTab": "By Schedule",
         "locationTab": "By Location",
+        "infoTab": "Info",
         "scoreTab": "Score",
-        "onCourtTab": "Players On Court",
-        "standbyTab": "Players Standby",
+        "onCourtTab": "On Court",
+        "standbyTab": "Standby",
         "suggestionsForYouLabel": "Suggestions for you",
         "nothingToShowLabel": "Nothing to show! :(",
         "followingLabel": "Following",
@@ -95,6 +101,7 @@
         "noFollowersLabel": "No followers!"
     },
     "userBox": {
+        "AddRedButton": "> Red",
         "followButton": "FOLLOW",
         "cancelButton": "CANCEL",
         "numberOfCircleButton": "${circlesCount} Circles",

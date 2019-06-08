@@ -7,6 +7,8 @@ import { Profile, UserProvider } from 'core/domain/users'
 import { IUserService } from 'core/services/users'
 import { injectable } from 'inversify'
 
+import { UserTie } from 'core/domain/circles/userTie'
+
 /**
  * Firbase user service
  *
@@ -17,12 +19,25 @@ import { injectable } from 'inversify'
 @injectable()
 export class UserService implements IUserService {
 
+  getTestUsers = () => {
+    let testUser1: UserTie = {
+      userId: 't1',
+      avatar: ' ',
+      fullName: 'Ying Shen'
+    }
+    let testUser2: UserTie = {
+      userId: 't2',
+      avatar: ' ',
+      fullName: 'Ying Wang'
+    }
+  }
+ 
   /**
    * Get user profile
    */
   public getUserProfile: (userId: string)
-    => Promise<Profile> = (userId) => {
-
+    => Promise<Profile> = (userId) => {      
+      
       return new Promise<Profile>((resolve, reject) => {
         let userProfileRef = db.doc(`userInfo/${userId}`)
         userProfileRef.get().then((result) => {

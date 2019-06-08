@@ -126,7 +126,7 @@ export class MasterComponent extends Component<IMasterComponentProps, IMasterCom
       <Helmet>
                 <meta charSet='utf-8' />
                 <title>Game Chaser Network</title>
-                <link rel='canonical' href='https://github.com/Qolzam/react-social-network' />
+                {/* <link rel='canonical' href='https://github.com/Qolzam/react-social-network' /> */}
             </Helmet>
        {sendFeedbackStatus ? <SendFeedback /> : ''}
         <div className='master__progress' style={{ display: (progress.visible ? 'block' : 'none') }}>

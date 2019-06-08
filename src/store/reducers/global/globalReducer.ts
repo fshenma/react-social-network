@@ -54,6 +54,15 @@ export const globalReducer = (state = Map(new GlobalState()), action: IGlobalAct
       return state
         .set('sendFeedbackStatus', false)
 
+    case GlobalActionType.ADD_EVENT_BUTTON:
+      return state
+        .set('show_add_event_button', action.payload)
+
+    case GlobalActionType.SAVE_GAME_EVENT:
+      return state
+       .set('new_game_event', action.payload)
+       .set('show_add_event_button', true)
+
     case GlobalActionType.HIDE_TOP_LOADING:
       const queueTopLoading = Number(state.get('topLoadingQueue')) > 0 ? (Number(state.get('topLoadingQueue')) - 1) : 0
       return state

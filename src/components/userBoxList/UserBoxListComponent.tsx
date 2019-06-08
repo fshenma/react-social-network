@@ -6,6 +6,7 @@ import {Map} from 'immutable'
 
 // - Import app components
 import UserBox from 'components/userBox'
+import PlayerBox from 'components/playerBox'
 
 import { IUserBoxListComponentProps } from './IUserBoxListComponentProps'
 import { IUserBoxListComponentState } from './IUserBoxListComponentState'
@@ -46,11 +47,16 @@ export class UserBoxListComponent extends Component<IUserBoxListComponentProps,I
   userList = () => {
     let { uid } = this.props
     const users = this.props.users
+    const isGame = this.props.isGame
     const userBoxList: any[] = []
     if (users) {
        users.forEach((user: UserTie, key: string) => {
         if (uid !== key) {
-          userBoxList.push(<UserBox key={key} userId={key} user={user}/>)
+          if (!isGame) {
+            userBoxList.push(<UserBox key={key} userId={key} user={user}  />)
+          } else {
+            userBoxList.push(<PlayerBox key={key} userId={key} user={user}  />)
+          }
         }
       })
     }

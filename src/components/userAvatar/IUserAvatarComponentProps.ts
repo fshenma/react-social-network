@@ -9,6 +9,10 @@ export interface IUserAvatarComponentProps {
      */
   fullName: string
     /**
+     * User Player number
+     */
+  playerNum?: number
+    /**
      * Avatar style
      */
   style?: {}

@@ -62,7 +62,7 @@ const menuItems: MenuItem[] = [
 ]
 
 const SideBar: React.SFC<SideBarType> = (props) => {
-     
+    
   const links = menuItems.map((prop: any, key: any) => {
     let url: string = prop.path
 
@@ -71,7 +71,7 @@ const SideBar: React.SFC<SideBarType> = (props) => {
     } 
 
     return (
-      <NavLink to={url} key={key}>
+      <NavLink to={url} key={key} onClick={props.handleDrawerToggle} >
         <MenuItem style={{ color: 'rgb(117, 117, 117)' }}>
          <ListItemIcon>
          <prop.icon />

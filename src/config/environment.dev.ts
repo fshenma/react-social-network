@@ -2,12 +2,12 @@ import { LanguageType } from 'store/reducers/locale/langugeType'
 
 export const environment = {
   firebase: {
-    apiKey: 'AIzaSyDZ9sJLolaat4VjFPUd4rsTdk-nC3ES4N4',
-    authDomain: 'test-233d5.firebaseapp.com',
-    databaseURL: 'https://test-233d5.firebaseio.com',
-    projectId: 'test-233d5',
-    storageBucket: 'test-233d5.appspot.com',
-    messagingSenderId: '942680276282'
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: 'gamechaser01.firebaseapp.com',
+    databaseURL: 'https://gamechaser01.firebaseio.com',
+    projectId: 'gamechaser01',
+    storageBucket: 'gamechaser01.appspot.com',
+    messagingSenderId: '261037674821'
   },
   settings: {
     enabledOAuthLogin: true,

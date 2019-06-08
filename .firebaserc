@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "test-4515a"
+    "default": "gamechaser01",
+    "staging": "gamechaser01"
   }
 }

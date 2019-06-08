@@ -14,6 +14,7 @@ import { ServerRequestType } from 'constants/serverRequestType'
 import StringAPI from 'src/api/StringAPI'
 import { ServerRequestModel } from 'src/models/server'
 import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
+import { AnyKindOfDictionary } from 'lodash'
 
 /**
  * Get service providers
@@ -159,6 +160,25 @@ export const setHeaderTitle = (text: string) => {
   return {
     type: GlobalActionType.SET_HEADER_TITLE,
     payload: text
+  }
+
+}
+
+/**
+ * Set header title
+ */
+export const AddEventButton = (showButton: boolean) => {
+  return {
+    type: GlobalActionType.ADD_EVENT_BUTTON,
+    payload: showButton
+  }
+
+}
+ 
+export const SaveGameEvent = (eventInfo: AnyKindOfDictionary) => {
+  return {
+    type: GlobalActionType.SAVE_GAME_EVENT,
+    payload: eventInfo
   }
 
 }
