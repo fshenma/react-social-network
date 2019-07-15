@@ -1,44 +1,17 @@
 // - Import react components
 import React, { Component } from 'react'
-import moment from 'moment/moment'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { push } from 'react-router-redux'
 import { getTranslate, getActiveLanguage } from 'react-localize-redux'
-import classNames from 'classnames'
 import {Map, List as ImuList} from 'immutable'
-
-// - Material UI
-// import Paper from '@material-ui/core/Paper'
-// import Button from '@material-ui/core/Button'
-// import RaisedButton from '@material-ui/core/Button'
-// import MenuList from '@material-ui/core/MenuList'
-// import MenuItem from '@material-ui/core/MenuItem'
-// import Checkbox from '@material-ui/core/Checkbox'
-// import TextField from '@material-ui/core/TextField'
-// import Tooltip from '@material-ui/core/Tooltip'
+ 
 import { withStyles } from '@material-ui/core/styles'
 const { MDBCard,  MDBCardTitle, MDBCardText, MDBCardBody, MDBAvatar, MDBRotatingCard, MDBIcon} = require('mdbreact')
-
-// - Import app components
-// import UserAvatar from 'components/userAvatar'
-
-// - Import API
-import StringAPI from 'api/StringAPI'
-
-// - Import actions
-// import * as circleActions from 'store/actions/circleActions'
-import * as playerActions from 'store/actions/playerActions'
-
-import { IActivePlayerBoxComponentProps } from './IActivePlayerBoxComponentProps'
-import { IActivePlayerBoxComponentState } from './IActivePlayerBoxComponentState'
-// import { User } from 'core/domain/users'
-// import { Player } from 'src/core/domain/player'
-// import { UserTie, Circle } from 'core/domain/circles'
-// import { ServerRequestType } from 'constants/serverRequestType'
-// import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
-// import { ServerRequestModel } from 'models/server'
-
+ 
+import { IActivePlayerComponentProps } from './IActivePlayerComponentProps'
+import { IActivePlayerComponentState } from './IActivePlayerComponentState'
+ 
 const styles = (theme: any) => ({
   root: {
     width: '100%',
@@ -76,7 +49,7 @@ const styles = (theme: any) => ({
 /**
  * Create component class
  */
-export class ActivePlayerBoxComponent extends Component<IActivePlayerBoxComponentProps, IActivePlayerBoxComponentState> {
+export class ActivePlayerComponent extends Component<IActivePlayerComponentProps, IActivePlayerComponentState> {
   /**
    * Fields
    */
@@ -110,7 +83,7 @@ export class ActivePlayerBoxComponent extends Component<IActivePlayerBoxComponen
    * Component constructor
    * @param  {object} props is an object properties of component
    */
-  constructor (props: IActivePlayerBoxComponentProps) {
+  constructor (props: IActivePlayerComponentProps) {
     super(props)
     const { userBelongCircles, circles, userId } = this.props
     
@@ -200,7 +173,7 @@ export class ActivePlayerBoxComponent extends Component<IActivePlayerBoxComponen
  * @param  {object} ownProps is the props belong to component
  * @return {object}          props of component
  */
-const mapDispatchToProps = (dispatch: Function, ownProps: IActivePlayerBoxComponentProps) => {
+const mapDispatchToProps = (dispatch: Function, ownProps: IActivePlayerComponentProps) => {
   return {
     // createCircle: (name: string) => dispatch(circleActions.dbAddCircle(name)),
     // addUserToCircle: (circleIds: ImuList<string>, user: UserTie) => dispatch(circleActions.dbUpdateUserInCircles(circleIds, user)),
@@ -221,7 +194,7 @@ const mapDispatchToProps = (dispatch: Function, ownProps: IActivePlayerBoxCompon
  * @param  {object} ownProps is the props belong to component
  * @return {object}          props of component
  */
-const mapStateToProps = (state: Map<string, any>, ownProps: IActivePlayerBoxComponentProps) => {
+const mapStateToProps = (state: Map<string, any>, ownProps: IActivePlayerComponentProps) => {
 
   const uid = state.getIn(['authorize', 'uid'])
   const request = state.getIn(['server', 'request'])
@@ -239,4 +212,4 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IActivePlayerBoxComp
 }
 
 // - Connect component to redux store
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(ActivePlayerBoxComponent as any) as any)
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(ActivePlayerComponent as any) as any)

@@ -1,5 +1,3 @@
-import { Profile } from 'core/domain/users/profile'
-import { UserTie } from 'core/domain/circles'
 import { Player } from 'src/core/domain/player'
 
 export interface IActivePlayersComponentProps {
@@ -26,4 +24,13 @@ export interface IActivePlayersComponentProps {
    */
   translate?: (state: any) => any
 
+  /**
+   * active teams in the court
+   */
+  activeTeams?: any
+
+  /**
+   * Styles
+   */
+  classes?: any
 }

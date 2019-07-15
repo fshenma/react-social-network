@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {Map} from 'immutable'
 
 // - Import app components
-import ActivePlayerBox from 'components/activePlayerBox'
+import ActivePlayer from 'components/activePlayer'
 import PlayerBox from 'components/playerBox'
 
 import { IActivePlayersBoxListComponentProps } from './IActivePlayersBoxListComponentProps'
@@ -58,9 +58,9 @@ export class ActivePlayersBoxListComponent extends Component<IActivePlayersBoxLi
       players.forEach((player: Player, key: string) => {
         if (uid !== key) {     
           if (player.team === 'red') {
-            this.activeRedPlayerBoxList.push(<ActivePlayerBox key={key} userId={key} />)
+            this.activeRedPlayerBoxList.push(<ActivePlayer key={key} userId={key} />)
           } else {
-            this.activeWhitePlayerBoxList.push(<ActivePlayerBox key={key} userId={key} />)
+            this.activeWhitePlayerBoxList.push(<ActivePlayer key={key} userId={key} />)
           }           
         }
       })

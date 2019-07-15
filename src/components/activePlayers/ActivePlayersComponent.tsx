@@ -1,17 +1,11 @@
 // - Import react components
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
-// import Paper from '@material-ui/core/Paper'
-import InfiniteScroll from 'react-infinite-scroller'
 import { getTranslate, getActiveLanguage } from 'react-localize-redux'
-// import {Map} from 'immutable'
 
 // - Import app components
-import ActivePlayersBoxList from 'components/activePlayersBoxList'
-import LoadMoreProgressComponent from 'layouts/loadMoreProgress'
-// const {Button, Card, CardBody, CardImage, CardTitle, CardText, Col} = require('mdbreact')
-
+// import ActivePlayersBoxList from 'components/activePlayersBoxList'
+import TeamRotate from 'components/teamRotate'
 // - Import API
 
 // - Import actions
@@ -19,6 +13,29 @@ import * as playerActions from 'store/actions/playerActions'
 import { IActivePlayersComponentProps } from './IActivePlayersComponentProps'
 import { IActivePlayersComponentState } from './IActivePlayersComponentState'
 // import { UserTie } from 'core/domain/circles/userTie'
+
+// import Link from '@material-ui/core/Link'
+import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = (theme: any) => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+   
+})
+
+const teamConfig = [
+  {
+    teamName: 'red',
+    teamColor: 'secondary'
+  },
+  {
+    teamName: 'white',
+    teamColor: 'primary'
+  }
+]
 
 /**
  * Create component class
@@ -34,9 +51,29 @@ export class ActivePlayersComponent extends Component<IActivePlayersComponentPro
 
         // Defaul state
     this.state = {
-
+      doRotate: false
     }
 
+  }
+
+  callRotate = () => {
+    this.setState({ doRotate: true })
+  }
+
+  componentDidMount() {
+    const { activeTeams } = this.props
+
+    this.setState({ teamConfig: activeTeams })
+  }
+
+  componentDidUpdate() {
+    if (this.state.doRotate) {
+      this.setState({ doRotate: false })
+    }
+  }
+
+  getTeamColor = (teamName: string) => {
+    return this.state.teamConfig.find((t: any) => t.teamName === teamName).teamColor
   }
 
   /**
@@ -52,31 +89,45 @@ export class ActivePlayersComponent extends Component<IActivePlayersComponentPro
      * @return {react element} return the DOM which rendered by component
      */
   render () {
-    const {hasMorePeople, translate} = this.props
+    const {hasMorePeople, translate, classes,activePlayers } = this.props
+    const { doRotate } = this.state
+
     // const users = this.getTestUsers()
     const playerInfo = // users //
                       this.props.activePlayers!
     return (
-            <div>
-                <InfiniteScroll
-                pageStart={0}
-                loadMore={this.scrollLoad}
-                hasMore={hasMorePeople}
-                useWindow={true}
-                loader={<LoadMoreProgressComponent key='find-people-load-more-progress' />}
-                >
+      <div>
+        <Button onClick={e => this.callRotate()} className={classes.button}>
+          Rotate
+        </Button>
+        <Divider
+          style={{
+            marginBottom: '2rem'
+          }}
+        />
 
-                <div className='tracks'>
-                {playerInfo ? (<div>     
-                  <ActivePlayersBoxList activePlayers={playerInfo} />           
-                                
-                <div style={{ height: '24px' }}></div>
-                </div>) : (<div className='g__title-center'>
-                {translate!('people.nothingToShowLabel')}
-               </div>)}
-                </div>
-            </InfiniteScroll>
-            </div>
+          <div className='tracks'>
+            {playerInfo ? (<div>
+              {/* <ActivePlayersBoxList activePlayers={playerInfo} /> */}
+              {teamConfig.map((team, i) => {
+                return (
+                  <TeamRotate
+                    key={team.teamName}
+                    teamName={team.teamName}
+                    teamColor={team.teamColor}
+                    loadedPlayer={activePlayers}
+                    runRotate={doRotate}
+                  />
+                )
+              })}
+
+              <div style={{ height: '24px' }}></div>
+            </div>) : (<div className='g__title-center'>
+              {translate!('people.nothingToShowLabel')}
+            </div>)}
+          </div>
+       
+      </div>
     )
   }
 }
@@ -111,4 +162,4 @@ const mapStateToProps = (state: any, ownProps: IActivePlayersComponentProps) => 
 }
 
 // - Connect component to redux store
-export default connect(mapStateToProps, mapDispatchToProps)(ActivePlayersComponent as any)
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ActivePlayersComponent as any) as any)

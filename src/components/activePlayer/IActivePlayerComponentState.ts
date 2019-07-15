@@ -1,5 +1,5 @@
 
-export interface IActivePlayerBoxComponentState {
+export interface IActivePlayerComponentState {
 
   /**
    * Create new circle button is disabled {true} or not {false}

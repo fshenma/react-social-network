@@ -162,8 +162,7 @@ export class GameComponent extends Component<IGameComponentProps,IGameComponentS
       {tabIndex === 1 && <TabContainer>
         <GameScoreBox />
       </TabContainer>}
-      {tabIndex === 2 && <TabContainer>
-        <span>Rotation</span>
+      {tabIndex === 2 && <TabContainer>         
         <ActivePlayers />
       </TabContainer>}
       {tabIndex === 3 && <TabContainer>
