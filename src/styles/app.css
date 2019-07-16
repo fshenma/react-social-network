@@ -1374,3 +1374,68 @@ h1 {
     height: 40px;
     width: 180px;
     top: 230px; } }
+
+#container {
+  border: 1px solid gray;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  flex-wrap: wrap;
+  margin: auto; }
+
+#container input {
+  outline: none;
+  border: none;
+  font-size: 18px;
+  flex-grow: 1;
+  /* filling the available space */ }
+
+.chip {
+  background-color: #e5e5e5;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 32px;
+  line-height: 32px;
+  margin: 10px 15px;
+  max-width: 13rem; }
+
+.chip-number {
+  -webkit-user-select: none;
+  width: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 1rem 0.35rem;
+  font-weight: bold; }
+
+.chip-name {
+  -webkit-user-select: none;
+  width: 8rem;
+  overflow: hidden;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 1rem 0.25rem;
+  font-weight: bold; }
+
+.chip img {
+  border-radius: 50%;
+  position: relative;
+  left: -11px;
+  height: 32px; }
+
+.chip-button-close {
+  margin-left: 5px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  right: -11px;
+  height: 32px;
+  line-height: 32px;
+  width: 24px;
+  text-align: center;
+  background-color: inherit; }

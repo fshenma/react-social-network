@@ -1,33 +1,24 @@
 // - Import react components
 import React, { Component } from 'react'
-import { Chip, Avatar } from '@material-ui/core'
 import { IActPlayerComponentProps } from './IActPlayerComponentProps'
 // import { IActPlayerComponentState } from './IActPlayerComponentState'
   
-const styles = (theme: any) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    // backgroundColor: theme.palette.background.paper
-  },
-})
-
 /**
  * Create component class
  */
 class ActPlayerComponent extends Component<IActPlayerComponentProps> {
-        
+            
   /**
    * Reneder component DOM
    * @return {react element} return the DOM which rendered by component
    */
   render () {
-    const { tip, dismiss, appear, teamColor } = this.props
+    const { player, dismiss, appear, teamColor } = this.props
     
     return (
              
         <div ref={this.props.incomeRef}>
-          <Chip
+          {/* <Chip
             id={tip.id}
             avatar={<Avatar>{tip.playerNumber}</Avatar>}
             onClick={appear}
@@ -36,7 +27,13 @@ class ActPlayerComponent extends Component<IActPlayerComponentProps> {
             // variant='outlined'      
             color={teamColor}
             // size='medium'
-          />           
+          />            */}
+          <div id={player.id} className='chip' style={{backgroundColor: teamColor}}>
+            <img src='https://s3.amazonaws.com/uifaces/faces/twitter/rogie/48.jpg' />
+            <span className='chip-number'>{player.playerNumber}</span>
+              <span className='chip-name' onClick={appear}>{player.fullName}</span>
+              <span className='chip-button-close' role='button' onClick={dismiss}>x</span>
+          </div>
 
         </div>
                   

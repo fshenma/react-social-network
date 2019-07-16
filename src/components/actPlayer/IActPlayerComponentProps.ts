@@ -1,7 +1,7 @@
 
 export interface IActPlayerComponentProps {
    
-  tip?: any
+  player?: any
   
   dismiss?: any
   

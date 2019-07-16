@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import { Player } from 'src/core/domain/player'
 import ITeamRotateComponentProps from './ITeamRotateComponentProps'
 import ITeamRotateComponentState from './ITeamRotateComponentState'
- 
+  
 export default class TeamRotateComponent extends React.Component<ITeamRotateComponentProps, ITeamRotateComponentState> {
   constructor(props: ITeamRotateComponentProps) {
     super(props)
@@ -24,7 +24,7 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
     const activePlayers: any = []
     
     loadedPlayer.forEach((player: Player, key: string) => {
-                    activePlayers.push({userId: key, ...player})
+                    activePlayers.push({id: key, ...player})
                 })
 
     this.setState({
@@ -45,10 +45,10 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
   dismiss = (e: any) => {
     const dissmisedTipId = e.currentTarget.parentElement.id
     const dissmisedTip = this.state.activePlayers.filter(
-      (tip: any) => tip.id === +dissmisedTipId
+      (t: any) => t.id === dissmisedTipId
     )
     const activePlayers = this.state.activePlayers.filter(
-      (tip: any) => tip.id !== +dissmisedTipId
+      (t: any) => t.id !== dissmisedTipId
     )
     this.setState(prevState => ({
       activePlayers,
@@ -57,12 +57,12 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
   }
 
   appear = (e: any) => {
-    const appearTipId = e.currentTarget.id
+    const appearTipId = e.currentTarget.parentElement.id
     const appearTip = this.state.dissmised.filter(
-      (tip: any) => tip.id === +appearTipId
+      (t: any) => t.id === appearTipId
     )
     const dissmised = this.state.dissmised.filter(
-      (tip: any) => tip.id !== +appearTipId
+      (t: any) => t.id !== appearTipId
     )
     this.setState(prevState => ({
       activePlayers: [...prevState.activePlayers, ...appearTip],
@@ -94,12 +94,12 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
         : [...standbyPlayers]
     })
   }
-
+  
   render() {
     const {teamColor, team} = this.state
 
     return (
-      <div className='team'>
+      <div>
         <Grid
           style={{
             justifyContent: 'flex-start',
@@ -114,7 +114,7 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
                   
                   <ActPlayerComponent
                     // delay={i * 200}
-                    tip={m}
+                    player={m}
                     key={m.userId}
                     appear={this.appear}
                     dismiss={this.dismiss}
@@ -137,7 +137,7 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
               .map((m: any, i: number) => {
                 return (
                   <ActPlayerComponent
-                    tip={m}
+                    player={m}
                     key={m.id}
                     appear={this.appear}
                     dismiss={this.dismiss}

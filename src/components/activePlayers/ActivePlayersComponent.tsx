@@ -29,7 +29,7 @@ const styles = (theme: any) => ({
 const teamConfig = [
   {
     teamName: 'red',
-    teamColor: 'secondary'
+    teamColor: 'red'
   },
   {
     teamName: 'white',
@@ -107,7 +107,7 @@ export class ActivePlayersComponent extends Component<IActivePlayersComponentPro
         />
 
           <div className='tracks'>
-            {playerInfo ? (<div>
+            {playerInfo ? (<div style={{width: '60%', display: 'inline-grid', gridTemplateColumns: 'auto auto auto'}}>
               {/* <ActivePlayersBoxList activePlayers={playerInfo} /> */}
               {teamConfig.map((team, i) => {
                 return (
