@@ -36,6 +36,10 @@ export let playerReducer = (state = Map(new PlayerState()), action: IPlayerActio
       return state
         .setIn(['activePlayers', payload.uid], payload.activePlayer)
 
+    case PlayerActionType.REMOVE_ACTIVE_PLAYER:
+      return state
+        .deleteIn(['activePlayers', payload.uid])
+    
     case PlayerActionType.CLEAR_ALL_DATA_USER:
       return Map(new PlayerState())
 

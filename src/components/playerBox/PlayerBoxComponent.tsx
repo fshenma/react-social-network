@@ -11,46 +11,17 @@ import {Map, List as ImuList} from 'immutable'
 // - Material UI
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import RaisedButton from '@material-ui/core/Button'
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
-import Checkbox from '@material-ui/core/Checkbox'
-import TextField from '@material-ui/core/TextField'
-import Tooltip from '@material-ui/core/Tooltip'
 import { withStyles } from '@material-ui/core/styles'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import ListItem from '@material-ui/core/ListItem'
-import List from '@material-ui/core/List'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import Divider from '@material-ui/core/Divider'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import SvgAdd from '@material-ui/icons/Add'
-import IconButton from '@material-ui/core/IconButton'
-import { grey } from '@material-ui/core/colors'
-
+ 
 // - Import app components
 import UserAvatar from 'components/userAvatar'
 
-// - Import API
-import StringAPI from 'api/StringAPI'
-
 // - Import actions
-import * as circleActions from 'store/actions/circleActions'
 import * as playerActions from 'store/actions/playerActions'
 
 import { IPlayerBoxComponentProps } from './IPlayerBoxComponentProps'
 import { IPlayerBoxComponentState } from './IPlayerBoxComponentState'
-import { User } from 'core/domain/users'
 import { Player } from 'src/core/domain/player'
-import { UserTie, Circle } from 'core/domain/circles'
-import { ServerRequestType } from 'constants/serverRequestType'
-import { ServerRequestStatusType } from 'store/actions/serverRequestStatusType'
-import { ServerRequestModel } from 'models/server'
 
 const styles = (theme: any) => ({
   root: {

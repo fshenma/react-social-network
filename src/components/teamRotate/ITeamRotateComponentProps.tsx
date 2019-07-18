@@ -4,4 +4,6 @@ export default interface ITeamRotateComponentProps {
     teamColor: string
     loadedPlayer: any
     runRotate: any
+
+    deleteActivePlayer?: (userId: string) => any
 }

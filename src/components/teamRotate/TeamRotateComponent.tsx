@@ -4,8 +4,11 @@ import Grid from '@material-ui/core/Grid'
 import { Player } from 'src/core/domain/player'
 import ITeamRotateComponentProps from './ITeamRotateComponentProps'
 import ITeamRotateComponentState from './ITeamRotateComponentState'
-  
-export default class TeamRotateComponent extends React.Component<ITeamRotateComponentProps, ITeamRotateComponentState> {
+import { connect } from 'react-redux'
+// - Import actions
+import * as playerActions from 'store/actions/playerActions'
+
+export class TeamRotateComponent extends React.Component<ITeamRotateComponentProps, ITeamRotateComponentState> {
   constructor(props: ITeamRotateComponentProps) {
     super(props)
     this.state = {
@@ -42,18 +45,51 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
     }
   }
 
+  move = (ar: any[], from: number,to: number) => {
+    ar.splice(to,0,ar.splice(from,1)[0])
+    return ar
+  }
+
+  moveUser = (userId: string, isUp: boolean) => {
+    // const userId = e.currentTarget.parentElement.id
+    const players = [...this.state.activePlayers]
+
+    const element: any = players.find(p => p.userId === userId)
+    const pos = players.indexOf(element)
+    const newPos = isUp ? (pos === players.length ? pos : pos + 1) : ( pos === 0 ? 0 : pos - 1)
+    const newPlayers = this.move(players, pos, newPos)
+    this.setState({
+      activePlayers: newPlayers
+    })
+
+  }
+
+  moveUp = (e: any) => {
+    const userId = e.currentTarget.parentElement.id
+    this.moveUser(userId, true)
+  }
+
+  moveDown = (e: any) => {
+    const userId = e.currentTarget.parentElement.id
+    this.moveUser(userId, false)
+  }
+  
   dismiss = (e: any) => {
+    const {deleteActivePlayer} = this.props
+
     const dissmisedTipId = e.currentTarget.parentElement.id
-    const dissmisedTip = this.state.activePlayers.filter(
-      (t: any) => t.id === dissmisedTipId
-    )
+    // const dissmisedTip = this.state.activePlayers.filter(
+    //   (t: any) => t.id === dissmisedTipId
+    // )
     const activePlayers = this.state.activePlayers.filter(
       (t: any) => t.id !== dissmisedTipId
     )
     this.setState(prevState => ({
       activePlayers,
-      dissmised: [...prevState.dissmised, ...dissmisedTip]
+      // dissmised: [...prevState.dissmised, ...dissmisedTip]
     }))
+
+    deleteActivePlayer!(dissmisedTipId)
   }
 
   appear = (e: any) => {
@@ -117,6 +153,8 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
                     player={m}
                     key={m.userId}
                     appear={this.appear}
+                    moveUp={this.moveUp}
+                    moveDown={this.moveDown}
                     dismiss={this.dismiss}
                     teamColor={teamColor}
                   />
@@ -140,6 +178,8 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
                     player={m}
                     key={m.id}
                     appear={this.appear}
+                    moveUp={this.moveUp}
+                    moveDown={this.moveDown}
                     dismiss={this.dismiss}
                     teamColor={this.state.teamColor}
                   />
@@ -151,3 +191,13 @@ export default class TeamRotateComponent extends React.Component<ITeamRotateComp
     )
   }
 }
+
+const mapDispatchToProps = (dispatch: any, ownProps: ITeamRotateComponentProps) => {
+  return {
+    deleteActivePlayer: (userId: string) => dispatch(playerActions.removeActivePlayer(userId)),     
+  }
+}
+
+// to do
+export default connect(null, mapDispatchToProps)(TeamRotateComponent as any)
+// saveActivePlayer: (userId: string, activePlayer: Player) => dispatch(playerActions.addActivePlayer(userId, activePlayer)),

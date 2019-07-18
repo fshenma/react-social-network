@@ -244,6 +244,16 @@ export const addActivePlayer = (uid: string, activePlayer: Player) => {
   }
 }
 
+/**
+ * remove active player
+ */
+export const removeActivePlayer = (uid: string) => {
+  return {
+    type: PlayerActionType.REMOVE_ACTIVE_PLAYER,
+    payload: { uid}
+  }
+}
+
 /* _____________ CRUD State _____________ */
 
 /**

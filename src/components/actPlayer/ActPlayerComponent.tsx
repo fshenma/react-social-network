@@ -13,7 +13,7 @@ class ActPlayerComponent extends Component<IActPlayerComponentProps> {
    * @return {react element} return the DOM which rendered by component
    */
   render () {
-    const { player, dismiss, appear, teamColor } = this.props
+    const { player, moveUp, moveDown, dismiss, appear, teamColor } = this.props
     
     return (
              
@@ -29,9 +29,11 @@ class ActPlayerComponent extends Component<IActPlayerComponentProps> {
             // size='medium'
           />            */}
           <div id={player.id} className='chip' style={{backgroundColor: teamColor}}>
-            <img src='https://s3.amazonaws.com/uifaces/faces/twitter/rogie/48.jpg' />
+            <img src='https://www.flaticon.com/premium-icon/icons/svg/1977/1977966.svg' />
             <span className='chip-number'>{player.playerNumber}</span>
               <span className='chip-name' onClick={appear}>{player.fullName}</span>
+              <span className='chip-button-close' role='button' onClick={moveUp}>&#8657;</span>
+              <span className='chip-button-close' role='button' onClick={moveDown}>&#8659;</span>
               <span className='chip-button-close' role='button' onClick={dismiss}>x</span>
           </div>
 
