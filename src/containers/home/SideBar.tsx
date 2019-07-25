@@ -13,6 +13,7 @@ import SvgSettings from '@material-ui/icons/Settings'
 // import SvgAccountCircle from '@material-ui/icons/AccountCircle'
 import SvgGames from '@material-ui/icons/Games'
 import SvgPeople from '@material-ui/icons/People'
+import SvgChat from '@material-ui/icons/Chat'
 import { SvgIconProps } from '@material-ui/core/SvgIcon/SvgIcon'
 import Hidden from '@material-ui/core/Hidden'
 import Drawer from '@material-ui/core/Drawer'
@@ -43,6 +44,11 @@ const menuItems: MenuItem[] = [
     path: '/games',
     icon: SvgGames,
     sidebarName: 'sidebar.games',
+  },
+  {
+    path: '/messages',
+    icon: SvgChat,
+    sidebarName: 'sidebar.messages',
   },
   {
     path: '/people',

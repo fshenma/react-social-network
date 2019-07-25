@@ -2,6 +2,7 @@
     "sidebar" : {
         "home": "Home",
         "games": "Games",
+        "messages": "Messages",
         "people": "Players",
         "settings": "Settings",
         "sendFeedback": "Send Feedback"
