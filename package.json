@@ -45,7 +45,7 @@
     "inversify": "^4.6.0",
     "jss-rtl": "^0.2.1",
     "keycode": "^2.1.9",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mdbreact": "^4.11.0",
     "moment": "^2.18.1",
     "morgan": "^1.9.1",
